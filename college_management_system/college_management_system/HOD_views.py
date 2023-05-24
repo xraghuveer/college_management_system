@@ -228,3 +228,12 @@ def VIEW_STAFF(request):
         'staff':staff,
     }
     return render(request,'HOD/view_staff.html',context)
+
+
+def EDIT_STAFF(request,id):
+    staff = Staff.objects.get(id = id)
+
+    context = {
+        'staff':staff,
+    }
+    return render(request, 'HOD/edit_staff.html',context)

@@ -41,7 +41,7 @@ urlpatterns = [
 
     path('Hod/Staff/Add',HOD_views.ADD_STAFF,name='add_staff'),
     path('Hod/Staff/View',HOD_views.VIEW_STAFF,name='view_staff'),
-
+    path('Hod/Staff/Edit/<str:id>',HOD_views.EDIT_STAFF,name='edit_staff'),
 
     path('Hod/Course/Add',HOD_views.ADD_COURSE,name='add_course'),
     path('Hod/Course/View',HOD_views.VIEW_COURSE,name='view_course'),

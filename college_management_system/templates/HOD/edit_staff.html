@@ -5,7 +5,7 @@
    <div class="col-sm-12">
       <div class="card">
          <div class="card-body">
-            <form method="post" action= "#" enctype="multipart/form-data">
+            <form method="post" action= "{% url 'update_staff' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                   <div class="col-12">
                      <h5 class="form-title"><span>Edit Staff</span></h5>
@@ -14,7 +14,8 @@
                   <div class="col-sm-11">
                      <div class="form-group">
                         <label>Proflie Picture</label>
-                        <input type="file" class="form-control" name="profile_pic" required>
+                        <input type="file" class="form-control" name="profile_pic" >
+                         <input type="text" class="form-control" name="staff_id" value = "{{staff.admin.id}}" required hidden>
                      </div>
                   </div>
                   <div class="col-sm-11">
@@ -32,13 +33,13 @@
                   <div class="col-sm-11">
                      <div class="form-group">
                         <label>Username</label>
-                        <input type="text" class="form-control" name="username"value = "{{staff.admin.username}}" required>
+                        <input type="text" class="form-control" name="username" value = "{{staff.admin.username}}" required readonly>
                      </div>
                   </div>
                   <div class="col-sm-11">
                      <div class="form-group">
                         <label>Email</label>
-                        <input type="text" class="form-control" name="email" value = "{{staff.admin.email}}" required>
+                        <input type="text" class="form-control" name="email" value = "{{staff.admin.email}}" required readonly>
                      </div>
                   </div>
                    <div class="col-sm-11">

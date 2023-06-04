@@ -43,6 +43,7 @@ urlpatterns = [
     path('Hod/Staff/View',HOD_views.VIEW_STAFF,name='view_staff'),
     path('Hod/Staff/Edit/<str:id>',HOD_views.EDIT_STAFF,name='edit_staff'),
     path('Hod/Staff/Update/',HOD_views.UPDATE_STAFF,name='update_staff'),
+    path('Hod/Staff/Delete/<str:admin>',HOD_views.DELETE_STAFF,name='delete_staff'),
 
     path('Hod/Course/Add',HOD_views.ADD_COURSE,name='add_course'),
     path('Hod/Course/View',HOD_views.VIEW_COURSE,name='view_course'),

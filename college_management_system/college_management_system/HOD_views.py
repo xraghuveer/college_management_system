@@ -273,3 +273,10 @@ def UPDATE_STAFF(request):
         return  redirect('view_staff')
 
         return render(request, 'HOD/edit_staff.html')
+
+
+def DELETE_STAFF(request,admin):
+    staff = CustomUser.objects.get(id = admin)
+    staff.delete()
+    messages.success(request , 'Deletion Successful !')
+    return redirect('view_staff')

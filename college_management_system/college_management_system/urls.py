@@ -49,8 +49,8 @@ urlpatterns = [
     path('Hod/Course/View',HOD_views.VIEW_COURSE,name='view_course'),
     path('Hod/Course/Edit/<str:id>',HOD_views.EDIT_COURSE,name='edit_course'),
     path('Hod/Course/Update',HOD_views.UPDATE_COURSE,name='update_course'),
-    path('Hod/Course/Delete/<str:id>',HOD_views.DELETE_COURSE,name='delete_course')
-
+    path('Hod/Course/Delete/<str:id>',HOD_views.DELETE_COURSE,name='delete_course'),
+    path('Hod/Subject/Add',HOD_views.ADD_SUBJECT,name='add_subject'),
 
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

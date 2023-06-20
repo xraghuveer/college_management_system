@@ -5,10 +5,10 @@
                <div class="page-header">
                   <div class="row align-items-center">
                      <div class="col">
-                        <h3 class="page-title">Students</h3>
+                        <h3 class="page-title">Subjects</h3>
                         <ul class="breadcrumb">
                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                           <li class="breadcrumb-item active">Students</li>
+                           <li class="breadcrumb-item active">Subjects</li>
                         </ul>
                      </div>
                      <div class="col-auto text-right float-right ml-auto">
@@ -27,7 +27,9 @@
                                  <thead>
                                     <tr>
                                        <th>ID</th>
-                                       <th>Name</th>
+                                       <th>Subject Name</th>
+                                        <th>Course</th>
+                                        <th>Staff</th>
                                        <th>Created at</th>
                                        <th>Updated at</th>
 
@@ -35,17 +37,19 @@
                                     </tr>
                                  </thead>
                                  <tbody>
-                                 {% for i in course %}
+                                 {% for i in subject %}
                                     <tr>
                                        <td>{{i.id}}</td>
                                        <td>{{i.name}}</td>
+                                       <td>{{i.course}}</td>
+                                       <td>{{i.staff.admin.first_name}}&nbsp;{{i.staff.admin.last_name}}</td>
 
                                        <td>{{i.created_at}}</td>
                                        <td>{{i.updated_at}}</td>
 
                                        <td class="text-right">
                                           <div class="actions">
-                                             <a href="{% url 'edit_course' i.id %}" class="btn btn-sm bg-success-light mr-2">
+                                             <a href="{% url 'edit_subject' i.id %}" class="btn btn-sm bg-success-light mr-2">
                                              <i class="fas fa-pen"></i>
                                              </a>
                                              <a href="{% url 'delete_course' i.id %}" class="btn btn-sm bg-danger-light">

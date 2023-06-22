@@ -329,3 +329,31 @@ def EDIT_SUBJECT(request,id):
         'staff':staff,
     }
     return render(request, 'HOD/edit_subject.html',context)
+
+
+def UPDATE_SUBJECT(request):
+    if request.method == 'POST':
+        subject_id = request.POST.get('subject_id')
+        subject_name = request.POST.get('subject_name')
+        course_id = request.POST.get('course_id')
+        staff_id = request.POST.get('staff_id')
+
+        course = Course.objects.get(id = course_id)
+        staff = Staff.objects.get(id = staff_id)
+
+        subject = Subject(
+            id = subject_id,
+            name = subject_name,
+            course = course,
+            staff = staff,
+        )
+        subject.save()
+        messages.success(request, 'Subject Updated !')
+        return redirect('view_subject')
+
+
+def DELETE_SUBJECT(request,id):
+    subject = Subject.objects.filter(id=id)
+    subject.delete()
+    messages.success(request, 'Subject Deleted !')
+    return redirect('view_subject')

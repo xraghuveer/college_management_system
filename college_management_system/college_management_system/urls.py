@@ -66,6 +66,11 @@ urlpatterns = [
     path('Hod/Staff/Send_Notification',HOD_views.STAFF_SEND_NOTIFICATION,name='staff_send_notification'),
     path('Hod/Staff/save_notification',HOD_views.SAVE_STAFF_NOTIFICATION,name='save_staff_notification'),
 
+    path('Hod/Staff/Leave_view',HOD_views.Staff_Leave_view,name='staff_leave_view'),
+    path('Hod/Staff/approve_leave/<str:id>',HOD_views.STAFF_APPROVE_LEAVE,name='staff_approve_leave'),
+    path('Hod/Staff/reject_leave/<str:id>',HOD_views.STAFF_REJECT_LEAVE,name='staff_reject_leave'),
+
+
     #Staff URL
     path('Staff/Home',Staff_views.HOME,name='staff_home'),
 
@@ -77,7 +82,8 @@ urlpatterns = [
     path('Staff/Apply_Leave',Staff_views.STAFF_APPLY_LEAVE,name='staff_apply_leave'),
     path('Staff/Apply_Leave_Save',Staff_views.STAFF_APPLY_LEAVE_SAVE,name='staff_apply_leave_save'),
 
-
+    path('Staff/Feedback',Staff_views.STAFF_FEEDBACK,name='staff_feedback'),
+    path('Staff/Feedback/Save',Staff_views.STAFF_FEEDBACK_SAVE,name='staff_feedback_save'),
 
 
 

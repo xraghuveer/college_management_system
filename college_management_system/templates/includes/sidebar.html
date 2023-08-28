@@ -65,7 +65,7 @@
                      <li class="submenu">
                         <a href="#"><i class="fa fa-envelope"></i> <span> Leave</span> <span class="menu-arrow"></span></a>
                         <ul>
-                           <li><a href="holiday.html">Staff Leave</a></li>
+                           <li><a href="{% url 'staff_leave_view' %}">Staff Leave</a></li>
                            <li><a href="holiday.html">Student Leave</a></li>
                         </ul>
                      </li>
@@ -94,7 +94,7 @@
                         <a href="{% url 'staff_apply_leave' %}"><i class="fas fa-envelope-open"></i> <span>Apply For Leave</span></a>
                      </li>
                       <li class="{% active_link 'hod_home' 'active' %}">
-                        <a href="{% url 'hod_home' %}"><i class="fas fa-comment"></i> <span>Send Feedback</span></a>
+                        <a href="{% url 'staff_feedback' %}"><i class="fas fa-comment"></i> <span>Send Feedback</span></a>
                      </li>
                      <li class="{% active_link 'notifications' 'active' %}">
                         <a href="{% url 'notifications' %}"><i class="fas fa-bell"></i> <span>Notifications</span></a>

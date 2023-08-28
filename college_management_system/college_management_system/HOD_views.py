@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from cmsapp.models import Course , Session_Year , CustomUser , Student , Staff , Subject , Staff_Notification
+from cmsapp.models import Course , Session_Year , CustomUser , Student , Staff , Subject , Staff_Notification , Staff_Leave
 from django.contrib import messages
 
 @login_required(login_url='/')
@@ -347,7 +347,7 @@ def EDIT_SUBJECT(request,id):
     }
     return render(request, 'HOD/edit_subject.html',context)
 
-
+@login_required(login_url='/')
 def UPDATE_SUBJECT(request):
     if request.method == 'POST':
         subject_id = request.POST.get('subject_id')
@@ -368,14 +368,14 @@ def UPDATE_SUBJECT(request):
         messages.success(request, 'Subject Updated !')
         return redirect('view_subject')
 
-
+@login_required(login_url='/')
 def DELETE_SUBJECT(request,id):
     subject = Subject.objects.filter(id=id)
     subject.delete()
     messages.success(request, 'Subject Deleted !')
     return redirect('view_subject')
 
-
+@login_required(login_url='/')
 def ADD_SESSION(request):
     if request.method == "POST":
         session_year_start = request.POST.get('session_year_start')
@@ -390,7 +390,7 @@ def ADD_SESSION(request):
         return redirect('add_session')
     return render(request,'HOD/add_session.html')
 
-
+@login_required(login_url='/')
 def VIEW_SESSION(request):
     session = Session_Year.objects.all()
 
@@ -399,7 +399,7 @@ def VIEW_SESSION(request):
     }
     return render(request, 'HOD/view_session.html',context)
 
-
+@login_required(login_url='/')
 def EDIT_SESSION(request,id):
     session = Session_Year.objects.filter(id=id)
 
@@ -408,7 +408,7 @@ def EDIT_SESSION(request,id):
     }
     return render(request, 'HOD/edit_session.html',context)
 
-
+@login_required(login_url='/')
 def UPDATE_SESSION(request):
     if request.method == 'POST':
         session_id = request.POST.get('session_id')
@@ -424,14 +424,14 @@ def UPDATE_SESSION(request):
         messages.success(request,'Session Updated Successfully')
     return redirect('view_session')
 
-
+@login_required(login_url='/')
 def DELETE_SESSION(request,id):
     session = Session_Year.objects.filter(id=id)
     session.delete()
     messages.success(request, 'Session Deleted !')
     return redirect('view_session')
 
-
+@login_required(login_url='/')
 def STAFF_SEND_NOTIFICATION(request):
     staff = Staff.objects.all()
     see_notification = Staff_Notification.objects.all().order_by('-id')
@@ -441,7 +441,7 @@ def STAFF_SEND_NOTIFICATION(request):
     }
     return render(request,'HOD/staff_notification.html',context)
 
-
+@login_required(login_url='/')
 def SAVE_STAFF_NOTIFICATION(request):
     if request.method == "POST":
         staff_id = request.POST.get('staff_id')
@@ -455,3 +455,26 @@ def SAVE_STAFF_NOTIFICATION(request):
         notification.save()
         messages.success(request,'Successfully Notified')
         return redirect('staff_send_notification')
+
+@login_required(login_url='/')
+def Staff_Leave_view(request):
+    staff_leave  = Staff_Leave.objects.all()
+
+    context = {
+        'staff_leave':staff_leave,
+    }
+    return render(request, 'HOD/staff_leave.html',context)
+
+@login_required(login_url='/')
+def STAFF_APPROVE_LEAVE(request,id):
+    leave = Staff_Leave.objects.get(id=id)
+    leave.status = 1
+    leave.save()
+    return redirect('staff_leave_view')
+
+@login_required(login_url='/')
+def STAFF_REJECT_LEAVE(request,id):
+    leave = Staff_Leave.objects.get(id=id)
+    leave.status = 2
+    leave.save()
+    return redirect('staff_leave_view')

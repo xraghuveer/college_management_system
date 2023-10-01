@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from cmsapp.models import Course , Session_Year , CustomUser , Student , Staff , Subject , Staff_Notification , Staff_Leave
+from cmsapp.models import Course , Session_Year , CustomUser , Student , Staff , Subject , Staff_Notification , Staff_Leave , Staff_Feedback
 from django.contrib import messages
 
 @login_required(login_url='/')
@@ -478,3 +478,24 @@ def STAFF_REJECT_LEAVE(request,id):
     leave.status = 2
     leave.save()
     return redirect('staff_leave_view')
+
+
+def STAFF_FEEDBACK(request):
+    feedback = Staff_Feedback.objects.all()
+
+    context = {
+        'feedback':feedback
+    }
+    return render(request,'HOD/staff_feedback.html',context)
+
+
+def STAFF_FEEDBACK_SAVE(request):
+    if request.method == "POST":
+        feedback_id = request.POST.get("feedback_id")
+        feedback_reply = request.POST.get("feedback_reply")
+
+        feedback = Staff_Feedback.objects.get(id = feedback_id)
+        feedback.feedback_reply = feedback_reply
+        feedback.save()
+
+        return redirect('staff_feedback_reply')

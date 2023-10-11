@@ -89,7 +89,9 @@ urlpatterns = [
     path('Staff/Feedback/Save',Staff_views.STAFF_FEEDBACK_SAVE,name='staff_feedback_save'),
 
 
+    #student_urls
 
+    path('Student/Home',Student_views.HOME,name='student_home'),
 
 
 

@@ -503,9 +503,10 @@ def STAFF_FEEDBACK_SAVE(request):
 @login_required(login_url='/')
 def STUDENT_SEND_NOTIFICATION(request):
     student = Student.objects.all()
-
+    notification = Student_Notification.objects.all()
     context = {
         'student' : student,
+        'notification' : notification,
     }
     return render(request,'HOD/student_notification.html',context)
 
